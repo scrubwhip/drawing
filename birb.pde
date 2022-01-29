@@ -1,63 +1,69 @@
-int x;
-int y;
-int r;
-int o;
-int colorr;
-int colorg;
-int colorb;
-int colorr2;
-int colorb2;
-int colorg2;
+int startx;
+int starty;
+int w;
+int endx;
+int endy;
 
-void setup(){
-  size(600, 600);
-  x = 0;
-  y = 0;
-  o = 0;
-  colorr2 = 255;
-  colorg2 = 200;
-  colorb2 = 200;
-  colorr = 255;
-  colorg = 200;
-  colorb = 200;
-  background(colorr, colorg, colorb);
+
+
+void setup() {
+size(600, 600);
+frameRate(30);
+starty = (int)(Math.random()*600);
+startx = (int)(Math.random()*600);
+endx = startx;
+endy = starty;
+background(0);
+frameRate(1000);
 }
-void draw(){
- fill(colorr, colorg, colorb, o);
-  rect(0, 0, 600, 600);
-  noFill();
-  stroke(colorr2, colorg2, colorb2);
-  strokeWeight(3);
-  ellipse(x, y, r, r);
-  r+=2;
-  o+=1;
+
+
+
+void draw() {
+
+stroke((int)(100+Math.random()*155), (int)(100+Math.random()*155), (int)(100+Math.random()*155));
+strokeWeight((int)(Math.random()*3));
+line(startx, starty,  endx, endy);
+startx = endx;
+starty = endy;
+endx += (int)(Math.random()*5);
+endy += (int)(Math.random()*5);
+endx -= (int)(Math.random()*5);
+endy -= (int)(Math.random()*5);
+if (endx>600){
+ endx=600;
 }
+if (endy>600){
+  endy=600;
+}
+
+if (endx < 0){
+  endx=0;
+}
+if (endy < 0){
+  endy=0;
+}
+}
+
+
+
+void mouseMoved(){
+  strokeWeight((int)(Math.random()*3));
+  stroke((int)(100+Math.random()*155), (int)(100+Math.random()*155), (int)(100+Math.random()*155));
+  starty = mouseY;
+  endy = mouseY;
+  startx = mouseX;
+  endx = mouseX;
+ 
+}
+
 void mousePressed(){
-x = mouseX;
-y = mouseY;
-r = 0;
-o=0;
-if(colorr2==255){
-colorr2= 255;
-  colorg2 = 100;
-  colorb2 = 100;
+  background(0);
+  strokeWeight((int)(Math.random()*3));
+  stroke((int)(100+Math.random()*155), (int)(100+Math.random()*155), (int)(100+Math.random()*155));
+  starty = mouseY;
+  endy = mouseY;
+  startx = mouseX;
+  endx = mouseX;
 }
-}
-void keyPressed(){
-if (colorr == 255){
-  colorr = 200;
-  colorg = 200;
-  colorb= 255;
-  colorr2= 100;
-  colorg2 = 100;
-  colorb2 = 255;
-}
-else{
-  colorr = 255;
-  colorg = 200;
-  colorb= 200;
-  colorr2= 255;
-  colorg2 = 100;
-  colorb2 = 100;
-}
-}
+  
